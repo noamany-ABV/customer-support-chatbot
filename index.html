@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSupport Pro - Customer Service Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .features {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-section {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .integration-notice {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            padding: 1rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .integration-notice strong {
+            color: #155724;
+        }
+
+        .chat-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            z-index: 9999;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .chat-trigger:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .widget-status {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TechSupport Pro</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Welcome to TechSupport Pro</h1>
+        <p>Your trusted partner for exceptional customer service</p>
+        <button class="cta-button" onclick="scrollToContact()">Get Support Now</button>
+    </section>
+
+    <div class="integration-notice">
+        <strong>✅ Zoho SalesIQ Integrated!</strong> The live chat widget is active. Click the chat button in the bottom right corner to start chatting!
+    </div>
+
+    <section class="features" id="features">
+        <div class="feature-card">
+            <h3>💬 Live Chat Support</h3>
+            <p>Connect with our team instantly through integrated Zoho Desk chat. Get real-time assistance for all your queries.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🎫 Ticket Management</h3>
+            <p>Every conversation is automatically tracked. We follow up on every issue until it's resolved to your satisfaction.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📊 Customer Portal</h3>
+            <p>Access your support history, track tickets, and manage conversations all in one place with Zoho Desk integration.</p>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" required placeholder="How can we help?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" required placeholder="Tell us about your inquiry..."></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit Ticket</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="widgetStatus" class="widget-status">
+        ✅ Zoho Chat Loaded!
+    </div>
+
+    <button class="chat-trigger" id="chatTrigger" onclick="openZohoChat()">
+        💬 Chat with Us
+    </button>
+
+    <footer>
+        <p>&copy; 2024 TechSupport Pro. Powered by Zoho Desk Integration.</p>
+    </footer>
+
+    <script>
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openZohoChat() {
+            console.log('Opening Zoho chat...');
+            
+            // Method 1: Try to open the float window
+            if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatwindow) {
+                try {
+                    window.$zoho.salesiq.floatwindow.visible('show');
+                    return;
+                } catch(e) {
+                    console.log('Method 1 failed:', e);
+                }
+            }
+            
+            // Method 2: Try to start chat
+            if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.chat) {
+                try {
+                    window.$zoho.salesiq.chat.start();
+                    return;
+                } catch(e) {
+                    console.log('Method 2 failed:', e);
+                }
+            }
+            
+            // Method 3: Try floatbutton
+            if (window.$zoho && window.$zoho.salesiq && window.$zoho.salesiq.floatbutton) {
+                try {
+                    window.$zoho.salesiq.floatbutton.visible('show');
+                    return;
+                } catch(e) {
+                    console.log('Method 3 failed:', e);
+                }
+            }
+            
+            // If nothing works, show helpful message
+            alert('The Zoho chat widget is loading or the Zoho widget will appear shortly. If you don\'t see it:\n\n1. Wait 5-10 seconds for it to load\n2. Check your browser console for errors\n3. Make sure you\'re connected to the internet\n4. The widget appears automatically on page load');
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            console.log('Form submitted:', formData);
+            alert('Thank you! Your ticket has been submitted.\n\nIn production, this will:\n✓ Create a Zoho Desk ticket automatically\n✓ Send you a confirmation email\n✓ Notify our support team');
+            
+            this.reset();
+        });
+
+        // Check if Zoho widget loaded successfully
+        let checkCount = 0;
+        const checkWidget = setInterval(function() {
+            checkCount++;
+            
+            if (window.$zoho && window.$zoho.salesiq) {
+                console.log('✅ Zoho SalesIQ widget loaded successfully!');
+                document.getElementById('widgetStatus').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('widgetStatus').style.display = 'none';
+                }, 4000);
+                clearInterval(checkWidget);
+            } else if (checkCount > 30) {
+                console.log('⚠️ Zoho widget taking longer than expected to load');
+                clearInterval(checkWidget);
+            }
+        }, 500);
+    </script>
+
+    <!-- ZOHO SALESIQ LIVE CHAT WIDGET -->
+    <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script>
+    <script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq0263220993855030e0751e4c1442d428c208f04f47a89f7aed7622e6ab6d05a3" defer></script>
+</body>
+</html>
